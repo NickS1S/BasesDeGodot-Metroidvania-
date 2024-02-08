@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://boq7c0w3aolrn"]
+
+[ext_resource type="Texture2D" uid="uid://ckk13sonchpll" path="res://assets/enemigo simple caminando 32x32-Sheet.png" id="1_eqjbb"]
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_no7ai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55vlq"]
+atlas = ExtResource("1_eqjbb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p85mr"]
+atlas = ExtResource("1_eqjbb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7uey"]
+atlas = ExtResource("1_eqjbb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw6fj"]
+atlas = ExtResource("1_eqjbb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3etc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55vlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p85mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7uey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw6fj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_no7ai")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3etc5")
+
+[node name="FloorDetection" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(-8, -1)
+target_position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, -3)
+scale = Vector2(0.65, 1)
+
+[node name="LeftR" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 0)
+
+[node name="RightR" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
