@@ -61,5 +61,5 @@ func _physics_process(delta):
 	if direction < 0:
 		$AnimatedSprite2D.scale.x = -1
 	
-	
+	print("Posición del enemigo: ", position)
 	move_and_slide()

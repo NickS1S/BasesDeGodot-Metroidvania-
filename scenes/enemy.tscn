@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://boq7c0w3aolrn"]
+[gd_scene load_steps=9 format=3 uid="uid://boq7c0w3aolrn"]
 
 [ext_resource type="Texture2D" uid="uid://ckk13sonchpll" path="res://assets/enemigo simple caminando 32x32-Sheet.png" id="1_eqjbb"]
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_no7ai"]
@@ -39,7 +39,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ck3ns"]
+radius = 55.0364
+
 [node name="Enemy" type="CharacterBody2D"]
+position = Vector2(130, 123)
+disable_mode = 2
 script = ExtResource("1_no7ai")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -61,3 +66,11 @@ target_position = Vector2(-15, 0)
 
 [node name="RightR" type="RayCast2D" parent="."]
 target_position = Vector2(15, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ck3ns")
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
