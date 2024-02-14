@@ -35,7 +35,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_fw6fj")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -50,6 +50,7 @@ script = ExtResource("1_no7ai")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3etc5")
+animation = &"Walk"
 
 [node name="FloorDetection" type="RayCast2D" parent="AnimatedSprite2D"]
 position = Vector2(-8, -1)
